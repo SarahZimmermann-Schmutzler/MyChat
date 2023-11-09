@@ -19,6 +19,7 @@
 
 <!-- JS Function -->
 <script>
+    // senden Daten an Backend und geben sie wieder aus
     async function sendMessage() {
         let formdata = new FormData();
         // brauchen formData, um Formular zu erstellen
@@ -35,21 +36,22 @@
             const wholeDate = new Date().toString();
             const date = wholeDate.slice(4,15)
             messageContainer.innerHTML += `<div id='deleteMessage'><span class="color-grey">[${date}]</span> {{request.user.first_name}}: <i class="color-grey">${messagefield.value}</i></div>`;
-            // Kopie der neuen Nachricht wird generiert in grau 
+            // Kopie der neuen Nachricht wird generiert in grau
 
             let response = await fetch('', {
                 method: 'POST',
                 body: formdata
             });
-            // POST Request als JSON = neue Nachricht an Server/Backend gesendet
+            // POST Request als JSON = Daten (=neue Message) an Server/Backend gesendet
 
             let json = await response.json();
             let message_data = JSON.parse(json);
+            // response wird umgewandelt, damit wir im Frontend damit arbeiten können
             // console.log('json is', json)
             // console.log('message data', message_data)
 
             document.getElementById('deleteMessage').remove();
-            // grauer Text wird wieder entfernt
+            // grauer Platzhalter-Text wird wieder entfernt
 
 
             messageContainer.innerHTML += `<div><span class="color-grey">[${date}]</span> {{request.user.first_name}}: <i>${message_data['fields']['text']}</i></div>`;

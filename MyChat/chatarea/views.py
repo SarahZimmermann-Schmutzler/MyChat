@@ -24,7 +24,7 @@ def index(request):
         serialized_obj = serializers.serialize('json', [new_message])
         # wandeln erstelltes Objekt in JSON um
         return JsonResponse(serialized_obj[1:-1], safe=False)
-        # response ist String in Array --> nehmen dessen Substring, den wir umwandeln
+        # response ist String in Array --> nehmen dessen Substring mit [1:-1] und wandeln ihn in der JS Funktion mit parse um
     chatMessages = Message.objects.filter(chat__id=1)
     return render(request, 'chat/index.html', {'messages': chatMessages})
     # der Pfad reicht aus, da immer automatisch im Templat Ordner nachgesehen wird

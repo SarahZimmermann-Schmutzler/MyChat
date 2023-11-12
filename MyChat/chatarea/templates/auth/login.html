@@ -1,1 +1,23 @@
-<h1>Hallo hier Login</h1>
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Login Page</h1>
+{% if wrongPassword %}
+<p>Benutzername oder Passwort ist falsch</p>
+{% endif %}
+
+<form method="POST" action="/login/">
+    {% csrf_token %}
+    <!-- muss immer mit! sonst werden daten nicht an Backend weitergeleitet -->
+    <input type="hidden" name="redirect" value="{{redirect}}">
+    <!-- im Frontend fehlt Login-Parameter, deswegen übernehmen wir ihn aus dem Backend als hidden Input -->
+    <div><input type="text" name="username" placeholder="User"></div>
+    <div><input type="password" name="password" placeholder="Password"></div>
+    <div><button>Login</button></div>
+</form>
+
+<form action="/register/">
+    {% csrf_token %}
+    <button>Noch nicht registriert?</button>
+</form>
+{% endblock %}

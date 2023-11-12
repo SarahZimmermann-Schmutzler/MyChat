@@ -3,11 +3,6 @@
 <!-- wird bei bei base.html an entsprechender Stelle eingefügt -->
 <!-- am Ende mit endblock geschlossen -->
 
-
-{% if request.user.is_authenticated %}
-<!-- If-Abfrage auf -->
-<!-- nachfolgendes nur angezeigt, wenn Use eingeloggt -->
-
 <div id="messageContainer">
     {% for message in messages %}
     <div>
@@ -78,12 +73,10 @@
         Send
     </button>
 </form>
-{% else %}
-<h2>Nicht eingeloggt!</h2>
-<p>Bitte klicke <a href="/login/">HIER</a></p>
-<!-- was engezeigt wird, wenn user nicht eingeloggt -->
 
-{% endif %}
-<!-- If-Abfrage zu -->
+<form method="POST">
+    {% csrf_token %}
+    <button>Log Out</button>
+</form>
 
 {% endblock %}

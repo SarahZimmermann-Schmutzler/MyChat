@@ -74,9 +74,9 @@
     </button>
 </form>
 
-<form method="POST">
+<form action="/logout/" method="POST">
     {% csrf_token %}
-    <button>Log Out</button>
+    <button>Logout</button>
 </form>
 
 {% endblock %}

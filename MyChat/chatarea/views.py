@@ -54,3 +54,15 @@ def logout_user(request):
         logout(request)
     # return render(request, 'auth/logout.html')
     return redirect('/')
+
+def render_register(request):
+    if request.method == 'POST':
+        user = User.objects.create_user(username=request.POST.get('username'),
+                                 email=request.POST.get('email'),
+                                 password=request.POST.get('password'))
+        if user:
+            # return render(request, 'auth/login.html')
+            return redirect('/')
+        else:
+            return render(request, 'auth/register.html')
+    return render(request, 'auth/register.html')

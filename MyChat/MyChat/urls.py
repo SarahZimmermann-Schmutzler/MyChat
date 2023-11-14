@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from chatarea.views import index, render_login, logout_user
+from chatarea.views import index, render_login, logout_user, render_register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('login/', render_login),
     path('logout/', logout_user),
+    path('register/', render_register),
 ]

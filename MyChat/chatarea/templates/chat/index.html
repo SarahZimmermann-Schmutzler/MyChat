@@ -30,8 +30,10 @@
         try {
             const wholeDate = new Date().toString();
             const date = wholeDate.slice(4,15)
-            messageContainer.innerHTML += `<div id='deleteMessage'><span class="color-grey">[${date}]</span> {{request.user.first_name}}: <i class="color-grey">${messagefield.value}</i></div>`;
+            messageContainer.innerHTML += `<div id='deleteMessage'><span class="color-grey">[${date}]</span> {{request.user}}: <i class="color-grey">${messagefield.value}</i></div>`;
             // Kopie der neuen Nachricht wird generiert in grau
+
+            messagefield.value = '';
 
             let response = await fetch('', {
                 method: 'POST',
@@ -49,7 +51,7 @@
             // grauer Platzhalter-Text wird wieder entfernt
 
 
-            messageContainer.innerHTML += `<div><span class="color-grey">[${date}]</span> {{request.user.first_name}}: <i>${message_data['fields']['text']}</i></div>`;
+            messageContainer.innerHTML += `<div><span class="color-grey">[${date}]</span> {{request.user}}: <i>${message_data['fields']['text']}</i></div>`;
             // jetzt zumindest beim Text Original Backend-Daten
 
             console.log('Success!')

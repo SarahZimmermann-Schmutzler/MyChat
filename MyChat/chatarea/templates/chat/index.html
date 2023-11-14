@@ -12,7 +12,6 @@
     <!-- alle Nachrichten des Chats mit der id=1 werden auf Seite angezeigt, inkl Erstellungsdatum und Autor -->
 </div>
 
-<!-- JS Function -->
 <script>
     // senden Daten an Backend und geben sie wieder aus
     async function sendMessage() {
@@ -29,7 +28,7 @@
 
         try {
             const wholeDate = new Date().toString();
-            const date = wholeDate.slice(4,15)
+            const date = wholeDate.slice(4, 15)
             messageContainer.innerHTML += `<div id='deleteMessage'><span class="color-grey">[${date}]</span> {{request.user}}: <i class="color-grey">${messagefield.value}</i></div>`;
             // Kopie der neuen Nachricht wird generiert in grau
 
@@ -56,7 +55,7 @@
 
             console.log('Success!')
 
-            
+
         } catch (e) {
             console.error('An error occured', e)
         }

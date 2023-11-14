@@ -1,23 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Login Page</h1>
-{% if wrongPassword %}
-<p>Benutzername oder Passwort ist falsch</p>
-{% endif %}
+<style>
+    .content-container {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+    }
 
-<form method="POST" action="/login/">
-    {% csrf_token %}
-    <!-- muss immer mit! sonst werden daten nicht an Backend weitergeleitet -->
-    <input type="hidden" name="redirect" value="{{redirect}}">
-    <!-- im Frontend fehlt Login-Parameter, deswegen übernehmen wir ihn aus dem Backend als hidden Input -->
-    <div><input type="text" name="username" placeholder="User"></div>
-    <div><input type="password" name="password" placeholder="Password"></div>
-    <div><button>Login</button></div>
-</form>
+    .left-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:flex-end;
+        margin-right: 20px;
+        /* background-color: aqua; */
+    }
 
-<form action="/register/">
-    {% csrf_token %}
-    <button>Noch nicht registriert?</button>
-</form>
+    .text-container {
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    .right-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 20px;
+        /* background-color: yellow; */
+    }
+
+    .form {
+        margin-bottom: 50px;
+    }
+</style>
+
+<div class="content-container">
+    <div class="left-container">
+        <div class="text-container">
+            <span style="color: #3F51B5; font-weight: bold;">Please</span> please Chet le chat and <span style="color: #3F51B5; font-weight: bold;">log in</span>
+            {% if wrongPassword %}
+            <p>Benutzername oder Passwort ist falsch</p>
+            {% endif %}
+        </div>
+
+        <div>
+            {% load static %}
+            <img src="{% static 'img/cat.png' %}">
+        </div>
+    </div>
+
+    <div class="right-container">
+        <form class="form" method="POST" action="/login/">
+            {% csrf_token %}
+            <!-- muss immer mit! sonst werden daten nicht an Backend weitergeleitet -->
+            <input type="hidden" name="redirect" value="{{redirect}}">
+            <!-- im Frontend fehlt Login-Parameter, deswegen übernehmen wir ihn aus dem Backend als hidden Input -->
+            <div><input type="text" name="username" placeholder="User"></div>
+            <div><input type="password" name="password" placeholder="Password"></div>
+            <div><button>Login</button></div>
+        </form>
+
+        <form action="/register/">
+            {% csrf_token %}
+            <button>Noch nicht registriert?</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

@@ -6,6 +6,7 @@
         width: 100%;
         height: 50vh;
         display: flex;
+        /* background-color: blueviolet; */
     }
 
     .left-container {
@@ -26,24 +27,36 @@
     .right-container {
         width: 50%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
         margin-left: 20px;
         /* background-color: yellow; */
     }
 
     .form {
         margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sign-in {
+        /* margin-top: -430px; */
+        position: absolute;
+        top: 50px;
+        right: 100px;
+    }
+
+    .mdl-textfield__input {
+        width: 80%;
     }
 </style>
 
 <div class="content-container">
     <div class="left-container">
         <div class="text-container">
-            <span style="color: #3F51B5; font-weight: bold;">Please</span> please Chet le chat and <span style="color: #3F51B5; font-weight: bold;">log in</span>
+            <span style="color: #3F51B5; font-weight: bold;">Please</span> Chet le chat and <span style="color: #3F51B5; font-weight: bold;">log in</span>
             {% if wrongPassword %}
-            <p>Benutzername oder Passwort ist falsch</p>
+            <p style="color:#FF4081; margin-top: 20px;">Username or Password is wrong</p>
             {% endif %}
         </div>
 
@@ -59,14 +72,25 @@
             <!-- muss immer mit! sonst werden daten nicht an Backend weitergeleitet -->
             <input type="hidden" name="redirect" value="{{redirect}}">
             <!-- im Frontend fehlt Login-Parameter, deswegen übernehmen wir ihn aus dem Backend als hidden Input -->
-            <div><input type="text" name="username" placeholder="User"></div>
-            <div><input type="password" name="password" placeholder="Password"></div>
-            <div><button>Login</button></div>
+            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="username" id="username">
+                <label class="mdl-textfield__label" for="username">Username</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" name="password" id="password">
+                <label class="mdl-textfield__label" for="password">Password</label>
+            </div>
+
+            <div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Login</button>
+            </div>
         </form>
 
-        <form action="/register/">
+        <form class="sign-in" action="/register/">
             {% csrf_token %}
-            <button>Noch nicht registriert?</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Sign in</button>
         </form>
     </div>
 </div>

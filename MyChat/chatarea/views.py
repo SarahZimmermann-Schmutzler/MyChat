@@ -52,8 +52,7 @@ def render_login(request):
 def logout_user(request):
     if request.method == 'POST':
         logout(request)
-    # return render(request, 'auth/logout.html')
-    return redirect('/')
+    return render(request, 'auth/logout.html')
 
 def render_register(request):
     if request.method == 'POST':

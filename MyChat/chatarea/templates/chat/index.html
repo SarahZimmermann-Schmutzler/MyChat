@@ -3,15 +3,6 @@
 <!-- wird bei bei base.html an entsprechender Stelle eingefügt -->
 <!-- am Ende mit endblock geschlossen -->
 
-<div id="messageContainer">
-    {% for message in messages %}
-    <div>
-        <span class="color-grey">[{{message.created_at}}]</span> {{message.author}}: <i>{{message.text}}</i>
-    </div>
-    {% endfor %}
-    <!-- alle Nachrichten des Chats mit der id=1 werden auf Seite angezeigt, inkl Erstellungsdatum und Autor -->
-</div>
-
 <script>
     // senden Daten an Backend und geben sie wieder aus
     async function sendMessage() {
@@ -62,22 +53,48 @@
     }
 </script>
 
-<!-- Eingabe Textmessage -->
-<form onsubmit="sendMessage(); return false;" method="post">
-    {% csrf_token %}
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" name="textmessage" type="text" id="messagefield">
-        <label class="mdl-textfield__label" for="messagefield">Text...</label>
+<style>
+    .content-container {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* background-color: blueviolet; */
+    }
+</style>
+
+<div class="content-container">
+    <div id="messageContainer">
+        {% for message in messages %}
+        <div>
+            <span class="color-grey">[{{message.created_at}}]</span> {{message.author}}: <i>{{message.text}}</i>
+        </div>
+        {% endfor %}
+        <!-- alle Nachrichten des Chats mit der id=1 werden auf Seite angezeigt, inkl Erstellungsdatum und Autor -->
     </div>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Send
-    </button>
-</form>
 
-<form action="/logout/" method="POST">
-    {% csrf_token %}
-    <button>Logout</button>
-</form>
+    <!-- Eingabe Textmessage -->
+    <form onsubmit="sendMessage(); return false;" method="post">
+        {% csrf_token %}
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="textmessage" type="text" id="messagefield">
+            <label class="mdl-textfield__label" for="messagefield">Text...</label>
+        </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Send
+        </button>
+    </form>
+
+    <form action="/logout/" method="POST">
+        {% csrf_token %}
+        <button>Logout</button>
+    </form>
+</div>
+
+
 
 {% endblock %}

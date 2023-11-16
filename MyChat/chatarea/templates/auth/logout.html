@@ -26,6 +26,14 @@
         position: absolute;
         top: 50px;
         right: 100px;
+        display: flex;
+        align-items: center;
+    }
+
+    .arrow {
+        width: 80px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 </style>
 
@@ -42,5 +50,14 @@
     </div>
 </div>
 
-<button onclick="backToLogin()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login">Back to Login</button>
+<div class="login">
+    <span>Oh no! That was a mistake!</span>
+    <div>
+        {% load static %}
+        <img class="arrow" src="{% static 'img/arrow.png' %}">
+    </div>
+    <button onclick="backToLogin()"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Back to
+        Login</button>
+</div>
 {% endblock %}

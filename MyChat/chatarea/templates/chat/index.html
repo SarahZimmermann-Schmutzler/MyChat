@@ -56,20 +56,82 @@
 <style>
     .content-container {
         width: 100%;
-        height: 50vh;
+        /* height: 50vh; */
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         /* background-color: blueviolet; */
     }
+
+    .message-container {
+        width: 50% !important;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+        padding: 20px;
+        /* background-color: brown; */
+    }
+
+    .user-messages {
+        display: flex;
+        /* width: fit-content; */
+        /* flex-direction: column; */
+        justify-content: flex-end;
+        /* background-color: aqua; */
+    }
+
+    .member-messages {
+        display: flex;
+        /* width: fit-content; */
+        /* flex-direction: column; */
+        justify-content: flex-start;
+        /* background-color: cadetblue; */
+    }
+
+    .message-user {
+        display: flex;
+        flex-direction: column;
+        background-color: cadetblue;
+        padding: 10px;
+        border-radius: 20px 20px 0px 20px;
+        color: white;
+    }
+
+    .message-member {
+        display: flex;
+        flex-direction: column;
+        background-color: blanchedalmond;
+        padding: 10px;
+        border-radius: 20px 20px 20px 0px;
+    }
+
+    .logout {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+    }
 </style>
 
 <div class="content-container">
-    <div id="messageContainer">
+    <div id="messageContainer" class="message-container">
         {% for message in messages %}
-        <div>
-            <span class="color-grey">[{{message.created_at}}]</span> {{message.author}}: <i>{{message.text}}</i>
+        <div class="user-messages">
+            <div class="message-user">
+                <span>{{message.author}}: <i>{{message.text}}</i></span>
+                <div>
+                    <span class="color-grey">{{message.created_at}}</span>
+                    <span>&#10003;&#10003;</span>
+                </div> 
+            </div>
+        </div>
+
+        <div class="member-messages">
+            <div class="message-member">
+                <span>{{message.author}}: <i>{{message.text}}</i></span>
+                <span class="color-grey">{{message.created_at}}</span> 
+            </div>
         </div>
         {% endfor %}
         <!-- alle Nachrichten des Chats mit der id=1 werden auf Seite angezeigt, inkl Erstellungsdatum und Autor -->
@@ -89,12 +151,9 @@
         </button>
     </form>
 
-    <form action="/logout/" method="POST">
+    <form action="/logout/" method="POST" class="logout">
         {% csrf_token %}
-        <button>Logout</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Logout</button>
     </form>
 </div>
-
-
-
 {% endblock %}

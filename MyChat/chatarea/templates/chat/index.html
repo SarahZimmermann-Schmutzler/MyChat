@@ -20,10 +20,20 @@
         try {
             const wholeDate = new Date().toString();
             const date = wholeDate.slice(4, 15)
-            messageContainer.innerHTML += `<div id='deleteMessage'><span class="color-grey">[${date}]</span> {{request.user}}: <i class="color-grey">${messagefield.value}</i></div>`;
-            // Kopie der neuen Nachricht wird generiert in grau
+            messageContainer.innerHTML += `
+            <div class="user-messages" id='deleteMessage'>
+                <div class="message-user">
+                    <span>{{request.user}}: <i>${messagefield.value}</i></span>
+                    <div class="arrows">
+                        <span>&#10003</span>
+                    </div> 
+                </div>
+                <span class="color-grey">${date}</span>
+            </div>
+            `;
+            // Kopie der neuen Nachricht wird generiert mit einem weißen Haken
 
-            messagefield.value = '';
+
 
             let response = await fetch('', {
                 method: 'POST',
@@ -38,11 +48,23 @@
             // console.log('message data', message_data)
 
             document.getElementById('deleteMessage').remove();
-            // grauer Platzhalter-Text wird wieder entfernt
+            // Platzhalter wird wieder entfernt
 
 
-            messageContainer.innerHTML += `<div><span class="color-grey">[${date}]</span> {{request.user}}: <i>${message_data['fields']['text']}</i></div>`;
+            messageContainer.innerHTML += `
+            <div class="user-messages">
+                <div class="message-user">
+                    <span>{{request.user}}: <i>${message_data['fields']['text']}</i></span>
+                    <div class="arrows">
+                        <span>&#10003;&#10003;</span>
+                    </div> 
+                </div>
+                <span class="color-grey">${date}</span>
+            </div>`;
             // jetzt zumindest beim Text Original Backend-Daten
+
+            messagefield.value = '';
+            // Messagefield leeren
 
             console.log('Success!')
 
@@ -74,35 +96,51 @@
         /* background-color: brown; */
     }
 
+    ::-webkit-scrollbar {
+        width: 5px;
+        background-color: white;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #A6B5C9;
+        border-radius: 5px;
+    }
+
     .user-messages {
         display: flex;
-        /* width: fit-content; */
-        /* flex-direction: column; */
-        justify-content: flex-end;
+        align-items: flex-end;
+        flex-direction: column;
+        margin-bottom: 20px;
         /* background-color: aqua; */
     }
 
     .member-messages {
         display: flex;
-        /* width: fit-content; */
-        /* flex-direction: column; */
-        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 20px;
         /* background-color: cadetblue; */
     }
 
     .message-user {
         display: flex;
         flex-direction: column;
-        background-color: cadetblue;
+        background-color: #7A8DB8;
         padding: 10px;
         border-radius: 20px 20px 0px 20px;
         color: white;
     }
 
+    .arrows {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 10px;
+    }
+
     .message-member {
         display: flex;
         flex-direction: column;
-        background-color: blanchedalmond;
+        background-color: #D9DFE8;
         padding: 10px;
         border-radius: 20px 20px 20px 0px;
     }
@@ -117,22 +155,26 @@
 <div class="content-container">
     <div id="messageContainer" class="message-container">
         {% for message in messages %}
+        {%if message.author == request.user%}
         <div class="user-messages">
             <div class="message-user">
                 <span>{{message.author}}: <i>{{message.text}}</i></span>
-                <div>
-                    <span class="color-grey">{{message.created_at}}</span>
+                <div class="arrows">
                     <span>&#10003;&#10003;</span>
-                </div> 
+                </div>
             </div>
+            <span class="color-grey">{{message.created_at}}</span>
         </div>
+        {%endif%}
 
+        {%if message.author != request.user%}
         <div class="member-messages">
             <div class="message-member">
                 <span>{{message.author}}: <i>{{message.text}}</i></span>
-                <span class="color-grey">{{message.created_at}}</span> 
             </div>
+            <span class="color-grey">{{message.created_at}}</span>
         </div>
+        {%endif%}
         {% endfor %}
         <!-- alle Nachrichten des Chats mit der id=1 werden auf Seite angezeigt, inkl Erstellungsdatum und Autor -->
     </div>
@@ -153,7 +195,8 @@
 
     <form action="/logout/" method="POST" class="logout">
         {% csrf_token %}
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Logout</button>
+        <button
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Logout</button>
     </form>
 </div>
 {% endblock %}

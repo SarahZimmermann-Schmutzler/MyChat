@@ -17,32 +17,65 @@
 </head>
 
 <body>
+    <style>
+        .page-content {
+            padding: 100px 100px;
+
+            @media(max-width: 449px) {
+                padding: 50px 50px;
+            }
+
+            @media(max-width: 349px) {
+                padding: 20px 20px;
+            }
+        }
+
+        .title-container {
+            @media(max-width: 449px) {
+                width: 100%;
+                display: flex;
+                justify-content: center !important;
+                align-items: center !important;
+                padding: 0;
+            }
+        }
+
+        .welcome {
+            font-size: 36px;
+
+            @media(max-width: 449px) {
+                font-size: 25px;
+            }
+        }
+    </style>
+
+
     <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            {% if request.user.is_authenticated %}
-            <span class="mdl-layout-title">Welcome to MyChat, {{request.user}}</span>
-            <!-- user is welcomed by name if logged in -->
-            
-            {% else %}
-            <h3>Welcome to MyChat</h3>
-            
-            {% endif %}
-            
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
-            <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row title-container">
+                <!-- Title -->
+                {% if request.user.is_authenticated %}
+                <span class="mdl-layout-title welcome">Welcome to MyChat, {{request.user}}</span>
+                <!-- user is welcomed by name if logged in -->
+
+                {% else %}
+                <span class="welcome">Welcome to MyChat</span>
+
+                {% endif %}
+
+                <!-- Add spacer, to align navigation to the right -->
+                <!-- <div class="mdl-layout-spacer"></div> -->
+                <!-- Navigation. We hide it in small screens. -->
+                <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="">Link</a>
                 <a class="mdl-navigation__link" href="">Link</a>
                 <a class="mdl-navigation__link" href="">Link</a>
             </nav> -->
-        </div>
-    </header>
-        
-    <!-- <div class="mdl-layout__drawer">
+            </div>
+        </header>
+
+        <!-- <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Chatroom</span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="">Link</a>
@@ -51,14 +84,14 @@
             <a class="mdl-navigation__link" href="">Link</a>
         </nav>
     </div> -->
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <!-- Your content goes here -->
-            {% block content %}
-            {% endblock %}
-        </div>
-    </main>
-</div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+    </div>
 
 </body>
 

@@ -22,12 +22,37 @@
         font-size: 18px;
     }
 
+    .cat-container {
+        @media(max-width: 470px) {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .cat {
+        @media(max-width: 470px) {
+            width: 150px;
+        }
+    }
+
     .login {
         position: absolute;
         top: 50px;
         right: 100px;
         display: flex;
         align-items: center;
+
+        @media(max-width: 1349px) {
+            right: 10px;
+            left: 10px;
+            justify-content: center;
+        }
+    }
+
+    .ohno {
+        @media(max-width: 474px) {
+            display: none;
+        }
     }
 
     .arrow {
@@ -43,15 +68,15 @@
             <span style="color: #3F51B5; font-weight: bold;">See you later</span> says Chet le chat.
         </div>
 
-        <div>
+        <div class="cat-container">
             {% load static %}
-            <img src="{% static 'img/butt.png' %}">
+            <img class="cat" src="{% static 'img/butt.png' %}">
         </div>
     </div>
 </div>
 
 <div class="login">
-    <span>Oh no! That was a mistake!</span>
+    <span class="ohno">Oh no! That was a mistake!</span>
     <div>
         {% load static %}
         <img class="arrow" src="{% static 'img/arrow.png' %}">

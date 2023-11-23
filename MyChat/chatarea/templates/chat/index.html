@@ -86,11 +86,24 @@
 
     .message-container {
         width: 50% !important;
-        height: 500px;
+        height: 450px;
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
         padding: 20px;
+        /* margin-top: 50px; */
+
+        @media(max-width: 795px) {
+            width: 100% !important;
+        }
+
+        @media(max-width: 459px) {
+            margin-top: 50px;
+        }
+
+        @media(max-width: 359px) {
+            margin-top: 80px;
+        }
     }
 
     ::-webkit-scrollbar {
@@ -144,6 +157,20 @@
         position: absolute;
         top: 50px;
         right: 100px;
+
+        @media(max-width: 459px) {
+            right: 50px;
+        }
+
+        @media(max-width: 359px) {
+            right: 20px;
+        }
+    }
+
+    .input {
+        @media(max-width: 589px) {
+            width: 70% !important;
+        }
     }
 </style>
 
@@ -178,7 +205,7 @@
     <!-- Eingabe Textmessage -->
     <form onsubmit="sendMessage(); return false;" method="post">
         {% csrf_token %}
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input">
             <input class="mdl-textfield__input" name="textmessage" type="text" id="messagefield">
             <label class="mdl-textfield__label" for="messagefield">Text...</label>
         </div>

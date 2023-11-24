@@ -7,14 +7,13 @@
     }
 </script>
 
-<style>
+<!-- <style>
     .content-container {
         width: 100%;
         height: 50vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        /* background-color: blueviolet; */
     }
 
     .text-container {
@@ -60,26 +59,26 @@
         margin-left: 20px;
         margin-right: 20px;
     }
-</style>
+</style> -->
 
-<div class="content-container">
+<div class="content-container-logout">
     <div>
-        <div class="text-container">
+        <div class="text-container-logout">
             <span style="color: #3F51B5; font-weight: bold;">See you later</span> says Chet le chat.
         </div>
 
-        <div class="cat-container">
+        <div class="cat-container-logout">
             {% load static %}
-            <img class="cat" src="{% static 'img/butt.png' %}">
+            <img class="cat-logout" src="{% static 'img/butt.png' %}">
         </div>
     </div>
 </div>
 
-<div class="login">
-    <span class="ohno">Oh no! That was a mistake!</span>
+<div class="login-logout">
+    <span class="ohno-logout">Oh no! That was a mistake!</span>
     <div>
         {% load static %}
-        <img class="arrow" src="{% static 'img/arrow.png' %}">
+        <img class="arrow-logout" src="{% static 'img/arrow.png' %}">
     </div>
     <button onclick="backToLogin()"
         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Back to

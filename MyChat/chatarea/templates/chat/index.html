@@ -75,7 +75,7 @@
     }
 </script>
 
-<style>
+<!-- <style>
     .content-container {
         width: 100%;
         display: flex;
@@ -172,16 +172,16 @@
             width: 70% !important;
         }
     }
-</style>
+</style> -->
 
-<div class="content-container">
-    <div id="messageContainer" class="message-container">
+<div class="content-container-index">
+    <div id="messageContainer" class="message-container-index">
         {% for message in messages %}
         {%if message.author == request.user%}
-        <div class="user-messages">
-            <div class="message-user">
+        <div class="user-messages-index">
+            <div class="message-user-index">
                 <span>{{message.author}}: <i>{{message.text}}</i></span>
-                <div class="arrows">
+                <div class="arrows-index">
                     <span>&#10003;&#10003;</span>
                 </div>
             </div>
@@ -190,8 +190,8 @@
         {%endif%}
 
         {%if message.author != request.user%}
-        <div class="member-messages">
-            <div class="message-member">
+        <div class="member-messages-index">
+            <div class="message-member-index">
                 <span>{{message.author}}: <i>{{message.text}}</i></span>
             </div>
             <span class="color-grey">{{message.created_at}}</span>
@@ -205,7 +205,7 @@
     <!-- Eingabe Textmessage -->
     <form onsubmit="sendMessage(); return false;" method="post">
         {% csrf_token %}
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label input-index">
             <input class="mdl-textfield__input" name="textmessage" type="text" id="messagefield">
             <label class="mdl-textfield__label" for="messagefield">Text...</label>
         </div>
@@ -215,7 +215,7 @@
         </button>
     </form>
 
-    <form action="/logout/" method="POST" class="logout">
+    <form action="/logout/" method="POST" class="logout-index">
         {% csrf_token %}
         <button
             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Logout</button>

@@ -1,11 +1,3 @@
-/* .page-content {
-    padding: 100px 100px;
-
-    @media(max-width: 449px) {
-        padding: 50px 50px;
-    }
-} */
-
 .color-grey {
     color: rgba(0, 0, 0, 0.4);
 }

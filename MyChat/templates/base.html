@@ -8,21 +8,24 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <link rel="stylesheet" href="{% static 'css/logout.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/cat.png' %}">
-    <!-- <script type="text/javascript" src="{% static 'js/script.js' %}"></script> -->
+    <!-- <script src="{% static 'js/script.js' %}"></script> -->
+    <script src="{% static 'js/chat.js' %}"></script>
+    <script src="{% static 'js/logout.js' %}"></script>
 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <title>MyChat</title>
 </head>
 
 <body>
-    <style>
-        .page-content {
+    <!-- <style>
+        .page-content-base {
             padding: 100px 100px;
 
             @media(max-width: 459px) {
@@ -34,7 +37,7 @@
             }
         }
 
-        .title-container {
+        .title-container-base {
             @media(max-width: 600px) {
                 width: 100%;
                 display: flex;
@@ -44,27 +47,27 @@
             }
         }
 
-        .welcome {
+        .welcome-base {
             font-size: 36px;
 
             @media(max-width: 600px) {
                 font-size: 25px;
             }
         }
-    </style>
+    </style> -->
 
 
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row title-container">
+            <div class="mdl-layout__header-row title-container-base">
                 <!-- Title -->
                 {% if request.user.is_authenticated %}
-                <span class="mdl-layout-title welcome">Welcome to MyChat, {{request.user}}</span>
+                <span class="mdl-layout-title welcome-base">Welcome to MyChat, {{request.user}}</span>
                 <!-- user is welcomed by name if logged in -->
 
                 {% else %}
-                <span class="welcome">Welcome to MyChat</span>
+                <span class="welcome-base">Welcome to MyChat</span>
 
                 {% endif %}
 
@@ -89,7 +92,7 @@
         </nav>
     </div> -->
         <main class="mdl-layout__content">
-            <div class="page-content">
+            <div class="page-content-base">
                 <!-- Your content goes here -->
                 {% block content %}
                 {% endblock %}

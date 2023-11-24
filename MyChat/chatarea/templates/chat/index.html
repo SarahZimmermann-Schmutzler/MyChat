@@ -3,7 +3,7 @@
 <!-- wird bei bei base.html an entsprechender Stelle eingefügt -->
 <!-- am Ende mit endblock geschlossen -->
 
-<script>
+<!-- <script>
     // senden Daten an Backend und geben sie wieder aus
     async function sendMessage() {
         let formdata = new FormData();
@@ -21,10 +21,10 @@
             const wholeDate = new Date().toString();
             const date = wholeDate.slice(4, 15)
             messageContainer.innerHTML += `
-            <div class="user-messages" id='deleteMessage'>
-                <div class="message-user">
+            <div class="user-messages-index" id='deleteMessage'>
+                <div class="message-user-index">
                     <span>{{request.user}}: <i>${messagefield.value}</i></span>
-                    <div class="arrows">
+                    <div class="arrows-index">
                         <span>&#10003</span>
                     </div> 
                 </div>
@@ -52,10 +52,10 @@
 
 
             messageContainer.innerHTML += `
-            <div class="user-messages">
-                <div class="message-user">
+            <div class="user-messages-index">
+                <div class="message-user-index">
                     <span>{{request.user}}: <i>${message_data['fields']['text']}</i></span>
-                    <div class="arrows">
+                    <div class="arrows-index">
                         <span>&#10003;&#10003;</span>
                     </div> 
                 </div>
@@ -73,7 +73,7 @@
             console.error('An error occured', e)
         }
     }
-</script>
+</script> -->
 
 <!-- <style>
     .content-container {

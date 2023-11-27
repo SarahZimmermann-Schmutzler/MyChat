@@ -14,7 +14,7 @@ from django.core import serializers
 # ist User nicht eingeloggt, Weiterleitung zum Login
 def index(request):
     """
-    this is a view to render the chat html
+    this is a view to create the data objects and render the chat html
     """
     if request.method == 'POST':
         print("Received Data " + request.POST['textmessage'])
@@ -31,7 +31,11 @@ def index(request):
     # der Pfad reicht aus, da immer automatisch im Templat Ordner nachgesehen wird
     # können der Funktion ein JSON-Objekt mitgeben --> Variable hardcode oder dynamisch, z.B. die Messages aus Chat 1
 
+
 def render_login(request):
+    """ 
+    this is a view to render the login html and redirect logged users to the chat
+    """
     redirect = request.GET.get('next')
     if request.method == 'POST':
         user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
@@ -49,12 +53,20 @@ def render_login(request):
     # rendert die Seite login.html
     # übergeben die Variable redirect ins Frontend, um dort damit arbeiten zu können
 
+
 def logout_user(request):
+    """ 
+    this is a view to render the logout html
+    """
     if request.method == 'POST':
         logout(request)
     return render(request, 'auth/logout.html')
 
+
 def render_register(request):
+    """ 
+    this is a view to render the register html and register new users
+    """
     if request.method == 'POST':
         user = User.objects.create_user(username=request.POST.get('username'),
                                  email=request.POST.get('email'),

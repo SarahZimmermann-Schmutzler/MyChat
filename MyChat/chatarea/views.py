@@ -44,10 +44,10 @@ def render_login(request):
         if user:
             login(request, user)
             # Login-Funktion
-            return HttpResponseRedirect(request.POST.get('redirect'))
+            return HttpResponseRedirect(request.POST.get('redirect', '/'))
             # existiert user, wird er eingeloggt und auf chat-seite weitergeleitet
         else:
-            return render(request, 'auth/login.html', {'wrongPassword': True, 'redirect': redirect})
+            return render(request, 'auth/login.html', {'wrongPassword': True, 'redirect': request.POST.get('redirect', '/')})
             # existiert er nicht, gehts zurück auf login-seite
     return render(request, 'auth/login.html', {'redirect': redirect})
     # rendert die Seite login.html

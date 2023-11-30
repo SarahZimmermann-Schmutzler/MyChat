@@ -36,7 +36,7 @@ async function sendMessage() {
         messageContainer.innerHTML += `
             <div class="user-messages-index" id='deleteMessage'>
                 <div class="message-user-index">
-                    <span>{{request.user}}: <i>${messagefield.value}</i></span>
+                    <span>${user}: <i>${messagefield.value}</i></span>
                     <div class="arrows-index">
                         <span>&#10003</span>
                     </div> 
@@ -58,7 +58,7 @@ async function sendMessage() {
         messageContainer.innerHTML += `
             <div class="user-messages-index">
                 <div class="message-user-index">
-                    <span>{{request.user}}: <i>${message_data['fields']['text']}</i></span>
+                    <span>${user}: <i>${message_data['fields']['text']}</i></span>
                     <div class="arrows-index">
                         <span>&#10003;&#10003;</span>
                     </div> 
